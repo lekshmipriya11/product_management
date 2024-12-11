@@ -1,0 +1,16 @@
+
+.Login
+{
+    padding-top: 200px;
+    padding-left: 600px;
+    width: 100%px;
+    height: 1000px;
+    background-image: url("../images/b4.avif");
+    background-repeat: no-repeat;
+
+}
+.MainHeading
+{
+    text-align: center;
+    font-size: medium;
+}
