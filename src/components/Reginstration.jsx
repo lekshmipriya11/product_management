@@ -27,11 +27,11 @@ const Reginstration = () => {
       }
       console.log("User registered successfully!!");
       toast.success("User Registrered Successfully!!", {
-        position: "top-center",
+        position: "top",
       });
     } catch (error) {
       console.log(error.message);
-      toast.success(error.message, {
+      toast.error(error.message, {
         position: "bottom-center",
       });
     }

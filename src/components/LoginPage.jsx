@@ -3,52 +3,81 @@ import { Button, Form } from "react-bootstrap";
 import "./Login.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./Firebase";
+import { toast } from "react-toastify";
+// import LoadingButton from '@mui/lab/LoadingButton';
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [loading, setLoading] = useState(true);
+  // function handleClick() {
+  //   setLoading(true);
+  // }
 
-const handleSubmit= async(e)=>{
-  e.preventDefault();
-  try {
-    await signInWithEmailAndPassword(auth,email,password);
-    console.log("User logged in Successfully");
-    
-  } catch (error) {
-    
-  }
-};
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log("User logged in Successfully");
+      window.location.href = "/Home";
+      toast.success("User Registrered Successfully!!", {
+        position: "top-center",
+      });
+    } catch (error) {
+      toast.error(error.message, {
+        position: "bottom-center",
+      });
+    }
+  };
+
+ 
   return (
-    <div className="Login" style={{backgroundColor:"lightgray"}}>
+    <div className="Login" style={{ backgroundColor: "lightgray" }}>
       <div>
-        <Form style={{paddingTop:"100px"}} onSubmit={handleSubmit}>
-          <h3 style={{paddingLeft:"100px"}}>Login Here</h3>
+        <Form style={{ paddingTop: "100px" }} onSubmit={handleSubmit}>
+          <h3 style={{ paddingLeft: "100px" }}>Login Here</h3>
           <div className="mb-3">
-            <label style={{paddingBottom:"10px"}}>Username/Email</label>
+            <label style={{ paddingBottom: "10px" }}>Username/Email</label>
             <input
               type="email"
               className="form-control"
               placeholder="Enter your user name / email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{width:"400px"}}
+              style={{ width: "400px" }}
             />
           </div>
           <div className="mb-3">
-            <label style={{paddingBottom:"10px"}}>Password</label>
+            <label style={{ paddingBottom: "10px" }}>Password</label>
             <input
               type="password"
               className="form-control"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{width:"400px"}}
+              style={{ width: "400px" }}
             />
           </div>
-          <div className="buttonDiv" style={{paddingLeft:"150px"}}>
-            <Button type="submit" className="sub_button"> Submit</Button>
-            <text> New Registration <a href="/LoginPage.jsx">Register Here</a></text>
+          <div className="buttonDiv" style={{ paddingLeft: "50px" }}>
+            <Button type="submit" className="sub_button">
+              {" "}
+              Submit
+            </Button>
+            {/* <LoadingButton
+          size="small"
+          onClick={handleClick}
+          loading={loading}
+          loadingIndicator="Loading…"
+          variant="outlined"
+        >
+          Fetch data
+        </LoadingButton> */}
+            <text>
+              {" "}
+              New Registration <a href="/Register">Register Here</a>
+            </text>
           </div>
         </Form>
       </div>
