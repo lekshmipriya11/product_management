@@ -6,7 +6,6 @@ import Modal from "react-bootstrap/Modal";
 import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
 import { Button } from "react-bootstrap";
 import { FaWindowClose } from "react-icons/fa";
-import { Divider } from "antd";
 
 const Home = () => {
   const productApi = "https://dummyjson.com/products";
@@ -44,6 +43,7 @@ const Home = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            color: "red",
           }}
         >
           <Modal.Title>
@@ -51,41 +51,40 @@ const Home = () => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {pid && pid.images && (
+          <Table>
+            <tr>
+              <th>Description:</th>
+              <td>{pid?.description}</td>
+            </tr>
+            <tr>
+              <th>Brand</th>
+              <td>{pid?.brand}</td>
+            </tr>
+            <tr>
+              <th>Catogery</th>
+              <td>{pid?.category}</td>
+            </tr>
+            <tr>
+              <th>Price</th>
+              <td>{pid?.price}</td>
+            </tr>
+            <tr>
+              <th>Stock</th>
+              <td>{pid?.stock}</td>
+            </tr>
+          </Table>
+          {pid && pid.images && (
             <div className="text-center">
               <img
                 src={pid?.images[0]}
                 style={{
-                  width: "150px",
+                  width: "300px",
                   height: "150px",
                   borderRadius: "10pzx",
                 }}
               />
             </div>
           )}
-          <Table>
-            <tr>
-              <th style={{paddingBottom:"77px"}}>Description </th>
-              <td > {pid?.description}</td>
-            </tr>
-            <tr>
-              <th>Brand </th>
-              <td>{pid?.brand}</td>
-            </tr>
-            <tr>
-              <th>Catogery </th>
-              <td>{pid?.category}</td>
-            </tr>
-            <tr>
-              <th>Price </th>
-              <td>{pid?.price}</td>
-            </tr>
-            <tr>
-              <th>Stock </th>
-              <td>{pid?.stock}</td>
-            </tr>
-          </Table>
-          
         </Modal.Body>
         <Button variant="link" onClick={handleClose}>
           <FaWindowClose style={{ fontSize: "20px", color: "gray" }} />
@@ -116,12 +115,12 @@ const Home = () => {
               <td>
                 <img
                   src={pro.images[0]}
-                  style={{ width: "50px", height: "50px" }}
+                  style={{ width: "100px", height: "50px" }}
                 />
               </td>
               <td width="180px">
                 <Button
-                  onClick={() => get_pid(pro)}
+                  onClick={() => get_pid(pro.)}
                   variant="link"
                   style={{ margin: "10px" }}
                 >
@@ -138,9 +137,6 @@ const Home = () => {
             </tr>
           ))}
         </Table>
-      </div>
-      <div>
-         <Button type="submit" className="addnew_button" style={{}}>Create Product</Button>
       </div>
     </div>
   );
